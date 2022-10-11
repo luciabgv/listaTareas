@@ -9,7 +9,6 @@ const ListaTarea = () => {
         <ListGroup>
       <ItemTarea></ItemTarea>
       
-
     </ListGroup>
     );
 };

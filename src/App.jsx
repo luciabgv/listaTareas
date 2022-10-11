@@ -1,5 +1,4 @@
 import FormularioTarea from "./components/FormularioTarea";
-import ListaTarea from "./components/ListaTarea";
 //importamos la hoja de estilo
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container } from "react-bootstrap";
@@ -13,7 +12,6 @@ function App() {
 
       {/* invocamos al formulario */}
       <FormularioTarea></FormularioTarea>
-      <ListaTarea></ListaTarea>
       </Container>
     </>
   );
