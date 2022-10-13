@@ -7,7 +7,7 @@ function App() {
   return (
     <>
     <Container className="my-5">
-      <h1 className="display-4">Prueba</h1>
+      <h1 className="display-4">Lista tareas</h1>
       <hr />
 
       {/* invocamos al formulario */}

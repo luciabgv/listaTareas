@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import ListaTarea from "./ListaTarea";
 
 const FormularioTarea = () => {
+  //buscar las tareas del localstorage si es q existe
+  const tareasLocalStorage = JSON.parse(localStorage.getItem("listaTareas")) || [];
+  //zonadonde agregamos la mayoria de logica
   const [tarea, setTarea] = useState("");
-  const [arregloTareas, setArregloTareas] = useState([]);
+  const [arregloTareas, setArregloTareas] = useState(tareasLocalStorage);
+
+  //ciclo de vida
+  useEffect(() => {
+    //console.log('prueba del ciclo de vida');
+    //guardar el arreglo de las tareas
+    localStorage.setItem("listaTareas", JSON.stringify(arregloTareas));
+  }, [arregloTareas]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -15,12 +26,11 @@ const FormularioTarea = () => {
     //limpiar el input
     setTarea("");
   };
-  const borrarTarea = (nombre)=>{
-let arregloModificado = arregloTareas.filter((item)=> item !== nombre);
-//actualizar el state
-setArregloTareas(arregloModificado);  
-
-}
+  const borrarTarea = (nombre) => {
+    let arregloModificado = arregloTareas.filter((item) => item !== nombre);
+    //actualizar el state
+    setArregloTareas(arregloModificado);
+  };
 
   return (
     <>
@@ -37,7 +47,10 @@ setArregloTareas(arregloModificado);
           </Button>
         </Form.Group>
       </Form>
-      <ListaTarea propsArregloTareas={arregloTareas} propsBorrarTarea={borrarTarea} ></ListaTarea>
+      <ListaTarea
+        propsArregloTareas={arregloTareas}
+        propsBorrarTarea={borrarTarea}
+      ></ListaTarea>
     </>
   );
 };
